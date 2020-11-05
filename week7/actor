@@ -1,0 +1,75 @@
+/*Develop a Java program to create a class Actor with id, name, no_of_movies,
+no_of_years_exp. Calculate the average_performance for each of the actor and print
+the name of the actor with highest average.*/
+
+
+import java.util.Scanner;
+class  Actor 
+{
+	private String id,name;
+	private int nom,noy;
+	private double avgperf;
+
+	void accept()
+	{
+        Scanner sc=new Scanner(System.in);
+	    System.out.print("\nenter Actor's  name :");
+        name=sc.nextLine();
+		System.out.print("\nenter id :");
+        id=sc.nextLine();
+		System.out.print("\nenter number of movies:");
+        nom=sc.nextInt(); 
+		System.out.print("\nenter number of years of experience:");
+		noy=sc.nextInt();
+	}
+
+		public String toString() // when an object is printed this method is automatically called
+   { 
+	  return("name of the actor="+name+"\nActor's id="+id+"\nnumber of movies="+nom+"\nnumber of years="+noy);//return statement with String is required
+   }
+
+   double calculate()
+	{ 
+	   avgperf=nom/noy;
+       return(avgperf);
+	}
+}
+
+
+class actormain
+{
+	public static void main(String[] args) 
+	{
+		int n;
+		Scanner sc=new Scanner(System.in);
+		
+
+	    System.out.println("enter number of Actors:");
+		n=sc.nextInt();
+		double p[]=new double[n];
+        Actor a[]=new Actor[n];
+		for(int i=0;i<n;i++)
+		{
+			a[i]=new Actor();
+	        System.out.println("enter actor's details:");
+
+			a[i].accept();
+			p[i]=a[i].calculate();
+			
+		}
+        double h=p[0];
+		int j=0;
+		for(int i=0;i<n;i++)
+		{
+         if(p[i]>h)
+			{
+              h=p[i];
+			  j=i;
+			}
+		} 
+
+
+		System.out.println("\nactor with highest average("+h+")is");
+		System.out.println(a[j]);
+	}
+}
