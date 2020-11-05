@@ -1,0 +1,35 @@
+/*Develop a Java program to accept the values of a double array through command line.
+Display the sorted array.*/
+import java.lang.String;
+class  cmdlinearr
+{
+	public static void main(String ss[]) 
+	{
+        double a[]=new double[10];
+		double temp;
+		int n=ss.length;
+		for(int i=0;i<n;i++)
+		{
+			a[i]=Double.parseDouble(ss[i]);
+		}
+
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n-i-1;j++)
+			{
+				if(a[j]>a[j+1])
+				{
+					temp=a[j];
+					a[j]=a[j+1];
+					a[j+1]=temp;
+				}
+			}
+		}
+		for(int j=0;j<n;j++)
+			{
+			  System.out.print(a[j]+" ");
+			}
+
+
+	}
+}
