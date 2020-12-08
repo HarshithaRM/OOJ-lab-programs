@@ -6,101 +6,80 @@ cube of number.*/
 class Randomnum implements Runnable
 { 
 	Thread t;
-   Randomnum()
+	String s;
+	int wait;
+	
+   Randomnum(String n,int time)
    {
-     t=new Thread(this, "NThread");
+	   s=n;
+	   wait=time;
+	   
+     t=new Thread(this,s);
 	 System.out.println("CT:"+t);
 	 t.start();
    }
    
   public void run()
    {
-	  int num;
 	   try
-	   {
-		   for(int n=5;n>0;n--)
-		   {
-			   num=(int)(Math.random()*10);
-			 System.out.println("random number="+num);
-			 if(num%2==0){
-				 square s=new square(num);}
-
-			else{
-				cube c=new cube(num);}
-
-			 Thread.sleep(10000);
+	      {
+			 Thread.sleep(wait);
 		   }
-	   }
+	   
 	   catch(InterruptedException ie)
 	   {
 		   System.out.println("Child Thread Interrupted");
 	   }
-	   System.out.println("Child Thread quitting");
+	   //System.out.println(s+" thread quitting");
    }
-}
 
-class square implements Runnable
-{ 
-	Thread t;
-	int num;
-   square(int n)
-   {
-     t=new Thread(this, "SquareThread");
-	 System.out.println("CT:"+t);
-	 num=n;
-	 t.start();
-   }
+   int generaterandom()
+	{
+	   int num;
+	   num=(int)(Math.random()*10);
+	   System.out.println("random number generated:"+num);
    
-  public void run()
-   {
-	   try
-	   {
-			 System.out.println("square="+(num*num));
-			 Thread.sleep(500);
-		   
-	   }
-	   catch(InterruptedException ie)
-	   {
-		   System.out.println("Child Thread Interrupted");
-	   }
-	   System.out.println("square Thread quitting");
+	   return num;
    }
-}
 
-class cube implements Runnable
-{ 
-	Thread t;
-	int num;
-   cube(int n)
-   {
-     t=new Thread(this, "cubeThread");
-	 System.out.println("CT:"+t);
-	 num=n;
-	 t.start();
-   }
+   void square(int n)
+	{
+	   System.out.println("square="+(n*n));
+	}
+
+	void cube(int n)
+	{
+		System.out.println("cube="+(n*n*n));
+	}
+}
    
-  public void run()
-   {
-	   try
-	   {
-			 System.out.println("cube="+(num*num*num));
-			 Thread.sleep(500);
-		   
-	   }
-	   catch(InterruptedException ie)
-	   {
-		   System.out.println("Child Thread Interrupted");
-	   }
-	   System.out.println("cube Thread quitting");
-   }
-}
-
-class Thread3
+   class Thread3
 {
 	public static void main(String ss[])
 	{
-		Randomnum n1=new Randomnum();
-		//n1.t.start();
+   int n;
+		Randomnum n1=new Randomnum("random",1000);
+	    //n1.t.start();
+		System.out.println("Back in main");
+
+           for(int i=0;i<5;i++)
+		{
+            n=n1.generaterandom();
+		 if(n%2==0)
+			{
+             Randomnum n2=new Randomnum("square",500);
+			 n2.square(n);
+			}
+
+			  else
+			{
+              Randomnum n3=new Randomnum("cube",500);
+              n3.cube(n);
+			}
+
+
+
+		}
 		System.out.println("Back in main");
 		
 	}
