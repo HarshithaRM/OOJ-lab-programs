@@ -30,7 +30,7 @@ class Randomnum implements Runnable
 	   {
 		   System.out.println("Child Thread Interrupted");
 	   }
-	   //System.out.println(s+" thread quitting");
+	   System.out.println(s+" thread quitting");
    }
 
    int generaterandom()
@@ -59,6 +59,12 @@ class Randomnum implements Runnable
 	{
    int n;
 		Randomnum n1=new Randomnum("random",1000);
+		System.out.println("Back in main");
+
+		 Randomnum n2=new Randomnum("square",500);
+		 System.out.println("Back in main");
+
+		  Randomnum n3=new Randomnum("cube",500);
 	    //n1.t.start();
 		System.out.println("Back in main");
 
@@ -67,13 +73,13 @@ class Randomnum implements Runnable
             n=n1.generaterandom();
 		 if(n%2==0)
 			{
-             Randomnum n2=new Randomnum("square",500);
+            
 			 n2.square(n);
 			}
 
 			  else
 			{
-              Randomnum n3=new Randomnum("cube",500);
+             
               n3.cube(n);
 			}
 
